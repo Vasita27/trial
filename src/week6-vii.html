@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Click Coordinates</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      cursor: crosshair;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    #coordinates {
+      margin-top: 20px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="container">
+    <h1>Click anywhere on the page</h1>
+    <div id="coordinates"></div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('container');
+      const coordinatesDiv = document.getElementById('coordinates');
+
+      container.addEventListener('click', (event) => {
+        const x = event.clientX;
+        const y = event.clientY;
+        coordinatesDiv.textContent = `X: ${x}, Y: ${y}`;
+      });
+    });
+  </script>
+</body>
+</html>

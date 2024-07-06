@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>సినిమా సమాచారం</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>సినిమా సమాచారం</h1>
+        <input type="text" id="quoteInput" placeholder="మీ ఉద్ధరణను ఇక్కడ నమోదు చేయండి">
+        <button onclick="getMovie()">శోధించు</button>
+        <div class="result" id="movieResult"></div>
+    </div>
+
+    <script>
+        function getMovie() {
+            var quote = document.getElementById('quoteInput').value;
+            var url = 'http://127.0.0.1:5000/movies?quote=' + encodeURIComponent(quote);
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    var resultDiv = document.getElementById('movieResult');
+                    if (data.movie) {
+                        resultDiv.innerHTML = '<strong>సినిమా:</strong> ' + data.movie;
+                    } else {
+                        resultDiv.innerHTML = '<strong>తప్పు:</strong> సినిమా కనబడలేదు';
+                    }
+                })
+                .catch(error => console.error('తప్పిది:', error));
+        }
+    </script>
+</body>
+</html>

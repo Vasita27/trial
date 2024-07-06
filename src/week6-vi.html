@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Move Image Slowly</title>
+  <style>
+    .container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    img {
+      position: absolute;
+      transition: all 2s ease; /* Transition for smooth movement over 2 seconds */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOnjC6pm2GcsTyHGlnlvDABlJ07idKWuW-wE4bMugCnw&s" alt="Moving Image" id="movingImage">
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const image = document.getElementById("movingImage");
+      
+      function moveImage() {
+        const newPositionX = Math.random() * (window.innerWidth - image.width);
+        const newPositionY = Math.random() * (window.innerHeight - image.height);
+
+        image.style.left = newPositionX + "px";
+        image.style.top = newPositionY + "px";
+      }
+      
+      setInterval(moveImage, 3000);
+    });
+  </script>
+</body>
+</html>

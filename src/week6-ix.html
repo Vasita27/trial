@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Validation</title>
+<style>
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<form id="myForm" onsubmit="return validateForm()">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <span id="nameError" class="error"></span><br>
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label><br>
+
+    <label for="mobile">Mobile:</label><br>
+    <input type="text" id="mobile" name="mobile"><br>
+
+    <label for="city">City:</label><br>
+    <input type="text" id="city" name="city"><br>
+
+    <label for="expertise">Expertise:</label><br>
+    <select id="expertise" name="expertise">
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="React">React</option>
+    </select><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email"><br>
+
+    <label for="date">Date:</label><br>
+    <input type="date" id="date" name="date"><br>
+
+    <label for="address">Address:</label><br>
+    <textarea id="address" name="address"></textarea><br>
+
+    <label for="country">Country:</label><br>
+    <input type="text" id="country" name="country"><br>
+
+    <label for="group">Group:</label><br>
+    <select id="group" name="group">
+        <option value="Friends">Friends</option>
+        <option value="Family">Family</option>
+        <option value="Coworker">Coworker</option>
+        <option value="Neighbour">Neighbour</option>
+    </select><br> <br>
+
+    <button type="submit">Submit</button>
+</form>
+
+<div id="successMessage" style="display: none;">
+    <p>Form submitted successfully!</p>
+    <a href="#" onclick="resetForm()">Submit Again</a>
+</div>
+
+<script>
+function validateForm() {
+    // Basic validation for required fields
+    var name = document.getElementById("name").value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var mobile = document.getElementById("mobile").value;
+    var city = document.getElementById("city").value;
+    var expertise = document.getElementById("expertise").value;
+    var email = document.getElementById("email").value;
+    var date = document.getElementById("date").value;
+    var address = document.getElementById("address").value;
+    var country = document.getElementById("country").value;
+    var group = document.getElementById("group").value;
+
+    if (name === "") {
+        document.getElementById("nameError").innerText = "Name is required";
+        return false;
+    }
+
+    if (!gender) {
+        alert("Please select gender");
+        return false;
+    }
+
+    if (mobile === "") {
+        alert("Mobile is required");
+        return false;
+    }
+
+    if (city === "") {
+        alert("City is required");
+        return false;
+    }
+
+    // Other validations can be added similarly
+
+    // If all validations pass, show success message and hide form
+    document.getElementById("myForm").style.display = "none";
+    document.getElementById("successMessage").style.display = "block";
+    
+    return false; // Prevent form submission and page reload
+}
+
+function resetForm() {
+    document.getElementById("myForm").reset();
+    document.getElementById("myForm").style.display = "block";
+    document.getElementById("successMessage").style.display = "none";
+}
+</script>
+
+</body>
+</html>

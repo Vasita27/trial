@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Z-Index Demo</title>
+<style>
+  .container {
+    position: relative;
+    width: 300px;
+    height: 200px;
+  }
+
+  .image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    transition: z-index 0.3s ease;
+  }
+
+  #image1 { top: 50px; left: 50px; background-color: red; }
+  #image2 { top: 50px; left: 150px; background-color: green; }
+  #image3 { top: 100px; left: 100px; background-color: blue; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div id="image1" class="image" onclick="moveToTop('image1')"></div>
+  <div id="image2" class="image" onclick="moveToTop('image2')"></div>
+  <div id="image3" class="image" onclick="moveToTop('image3')"></div>
+</div>
+
+<script>
+  function moveToTop(id) {
+    let element = document.getElementById(id);
+    let highestZIndex = 0;
+    let allImages = document.querySelectorAll('.image');
+    
+    allImages.forEach(img => {
+      img.style.zIndex = 1;
+    });
+
+    element.style.zIndex = 2;
+  }
+</script>
+
+</body>
+</html>
